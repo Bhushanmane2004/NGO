@@ -18,6 +18,14 @@ function logo() {
         alt="Logo"
         height="40"
         width="40"
+        className="dark:hidden"
+        />
+         <Image
+        src="/logo-dark.svg"
+        alt="Logo"
+        height="40"
+        width="40"
+        className="hidden dark:block"
         />
         <p className={cn("font-semibold")}>
         Jotion    
