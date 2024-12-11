@@ -26,12 +26,12 @@ function navbar() {
         )}
         {!isAuthenticated && !isLoading &&(
           <>
-          <SignInButton mode="modal">
+          <SignInButton mode="modal" >
             <Button variant="ghost" size="sm">
               Login
             </Button>
           </SignInButton>
-          <SignInButton mode="modal">
+          <SignInButton  mode="modal">
             <Button  size="sm">
              Get Jotion free
             </Button>
