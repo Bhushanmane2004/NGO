@@ -14,6 +14,7 @@ import UserItem from "./user-item";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import Item from "./item";
+import TrashBox from "./trashbox";
 import { toast } from "sonner";
 import DocumentList from "./document-list";
 import {
@@ -158,7 +159,7 @@ function navigation() {
               side={isMobile ? "bottom" : "right"}
               className="p-0 w-72"
             >
-              Trash Box
+              <TrashBox />
             </PopoverContent>
           </Popover>
         </div>

@@ -106,3 +106,70 @@ export const getTrash = query({
     return document;
   },
 });
+
+export const restore = mutation({
+  args: { id: v.id("document") },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      throw new Error("Not authenticated");
+    }
+    const userId = identity.subject;
+
+    const extingDocumnet = await ctx.db.get(args.id);
+    if (!extingDocumnet) {
+      throw new Error("Not found");
+    }
+    if (extingDocumnet.userId !== userId) {
+      throw new Error("Not authenticated");
+    }
+    const recurrciveRestore = async (documentId: Id<"document">) => {
+      const children = await ctx.db
+        .query("document")
+        .withIndex("by_user_parent", (q) =>
+          q.eq("userId", userId).eq("parentDocumnet", documentId)
+        )
+        .collect();
+      for (const child of children) {
+        await ctx.db.patch(child._id, {
+          isArchive: false,
+        });
+        await recurrciveRestore(child._id);
+      }
+    };
+    const options: Partial<Doc<"document">> = {
+      isArchive: false,
+    };
+    if (extingDocumnet.parentDocumnet) {
+      const parentDocument = await ctx.db.get(extingDocumnet.parentDocumnet);
+      if (parentDocument!.isArchive) {
+        options.parentDocumnet = undefined;
+      }
+    }
+    const document = await ctx.db.patch(args.id, options);
+    recurrciveRestore(args.id);
+    return document;
+  },
+});
+
+export const remove = mutation({
+  args: { id: v.id("document") },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      throw new Error("Not authenticated");
+    }
+    const userId = identity.subject;
+
+    const extingDocumnet = await ctx.db.get(args.id);
+
+    if (!extingDocumnet) {
+      throw new Error("Not found");
+    }
+    if (extingDocumnet.userId !== userId) {
+      throw new Error("Not authenticated");
+    }
+    const document = await ctx.db.delete(args.id);
+    return document;
+  },
+});
