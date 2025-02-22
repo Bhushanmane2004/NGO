@@ -42,7 +42,7 @@ function Heroes() {
         </div>
         <div className="relative h-[400px]">
           <Image
-            src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            src="https://images.pexels.com/photos/6590920/pexels-photo-6590920.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             alt="Food Distribution"
             className="rounded-lg object-cover w-full h-full"
             width={800}

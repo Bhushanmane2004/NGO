@@ -1,7 +1,10 @@
 "use client";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Spinner } from "@/components/ui/spinner";
 import { useConvexAuth } from "convex/react";
 import { redirect } from "next/navigation";
+import { AppSidebar } from "../(components)/app-sidebar";
+import DashBooard from "../(components)/dashboard";
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -23,8 +26,10 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   }
 
   return (
-    <div className="h-full flex dark:bg-[#1f1f1f]">
-      <main className="flex-1 h-full overflow-y-auto">{children}</main>
+    <div className="h-full w-full flex dark:bg-[#1f1f1f]">
+      <main>
+        <DashBooard />
+      </main>
     </div>
   );
 };

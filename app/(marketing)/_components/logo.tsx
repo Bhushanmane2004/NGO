@@ -15,7 +15,7 @@ function logo() {
         alt="Logo"
         height="40"
         width="40"
-        className="dark:hidden"
+        className="dark:hidden "
       />
       <Image
         src="/lg.svg"
