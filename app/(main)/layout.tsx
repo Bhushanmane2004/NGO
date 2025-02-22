@@ -5,6 +5,7 @@ import { useConvexAuth } from "convex/react";
 import { redirect } from "next/navigation";
 import { AppSidebar } from "../(components)/app-sidebar";
 import DashBooard from "../(components)/dashboard";
+import { Toaster } from "sonner";
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -29,6 +30,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     <div className="h-full w-full flex dark:bg-[#1f1f1f]">
       <main>
         <DashBooard />
+        {/* <Toaster /> */}
       </main>
     </div>
   );

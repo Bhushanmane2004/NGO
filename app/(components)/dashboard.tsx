@@ -6,6 +6,7 @@ import DarkMode from "./dark-mode";
 import { AppSidebar } from "./app-sidebar";
 import NgoNearMe from "./ngonearme";
 import Home from "../(main)/(routes)/(container)/home";
+import NgoReq from "./ngo-request";
 
 export default function Dashboard() {
   const [selectedMenu, setSelectedMenu] = useState("Home");
@@ -17,7 +18,7 @@ export default function Dashboard() {
       case "NGO Near Me":
         return <NgoNearMe />;
       default:
-        return <Home />;
+        return <NgoReq />;
     }
   };
 
@@ -36,7 +37,7 @@ export default function Dashboard() {
             <DarkMode />
           </div>
 
-          <div className="max-w-[1400px] mx-auto pt-3">
+          <div className="min-w-[75vw] mx-auto pt-3">
             <h2 className="text-2xl font-bold text-white mb-6 text-center">
               {/* {selectedMenu} */}
             </h2>
