@@ -43,11 +43,11 @@ export function AppSidebar({
   useEffect(() => {
     if (user?.publicMetadata?.role === "NGO") {
       setItems((prevItems) => {
-        if (!prevItems.find((item) => item.title === "NGO-Event")) {
+        if (!prevItems.find((item) => item.title === "Request for Food")) {
           console.log("User is an NGO, adding Admin menu");
           return [
             ...prevItems,
-            { title: "NGO-Event", url: "#", icon: EarthLock },
+            { title: "Request for Food", url: "#", icon: EarthLock },
           ];
         }
         return prevItems;

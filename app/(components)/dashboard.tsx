@@ -17,8 +17,10 @@ export default function Dashboard() {
         return <Home />;
       case "NGO Near Me":
         return <NgoNearMe />;
-      default:
+      case "Request for Food":
         return <NgoReq />;
+      default:
+        return <Home />;
     }
   };
 
@@ -37,7 +39,7 @@ export default function Dashboard() {
             <DarkMode />
           </div>
 
-          <div className="min-w-[75vw] mx-auto pt-3">
+          <div className="min-w-[77vw] mx-auto pt-3">
             <h2 className="text-2xl font-bold text-white mb-6 text-center">
               {/* {selectedMenu} */}
             </h2>
