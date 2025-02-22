@@ -11,20 +11,20 @@ function logo() {
   return (
     <div className="hidden md:flex items-center gap-x-2">
       <Image
-        src="/logo.svg"
+        src="/foodshare.png"
         alt="Logo"
         height="40"
         width="40"
         className="dark:hidden"
       />
       <Image
-        src="/logo-dark.svg"
+        src="/lg.svg"
         alt="Logo"
         height="40"
         width="40"
         className="hidden dark:block"
       />
-      <p className={cn("font-semibold")}>Jotion</p>
+      <p className={cn("font-semibold")}>FoodShare</p>
     </div>
   );
 }

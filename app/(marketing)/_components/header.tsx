@@ -1,60 +1,35 @@
-"use client"
+"use client";
 
-import { Button } from '@/components/ui/button'
-import { ArrowRight } from 'lucide-react'
-import { SignInButton, useUser } from '@clerk/clerk-react'
-import { Spinner } from '@/components/ui/spinner';
-import Link from 'next/link';
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import { SignInButton, useUser } from "@clerk/clerk-react";
+import { Spinner } from "@/components/ui/spinner";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
-
-
-function header() {
+function Header() {
   const { isLoaded, isSignedIn } = useUser();
 
   return (
-    <div className='max-w-3xl space-y-4'>
-      <h1 className='text-3xl sm:text-5xl md:text-6xl font-bold'>
-        Your Ideas, Documnets, & Plans, Unified. Welcome to <span className='underline'>Jotion</span>
+    <div className="max-w-3xl space-y-6 text-center mx-auto py-10">
+      <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold leading-tight">
+        Connecting Surplus Food with Those in Need. <br />
+        Welcome to{" "}
+        <span className="underline text-green-600 dark:text-green-400">
+          FoodShare
+        </span>
       </h1>
-      <h3 className='text-base sm:text-xl md:text-2xl font-medium'>
-        Jotion is  the  connected workspace where <br/> better, faster work happens.
+      <h3 className="text-base sm:text-xl md:text-2xl font-medium text-muted-foreground">
+        Join our mission to reduce food waste and feed communities. <br /> Every
+        meal shared is a story of hope.
       </h3>
-      {
-        !isLoaded &&(
-          <>
-          <div className='w-full flex justify-around'>
-          <Spinner size="lg"/>
-          </div>
-            
-          </>
-        )
-      }
-      {isLoaded && isSignedIn &&(
-        <>
-        <Button asChild>
-          <Link href='/documents'>
-          Entre Jotion
-        <ArrowRight className='h-4 w-4  ml-2' />
+      <Button asChild size="lg" className="gap-2">
+        <Link href="/signup">
+          Join FoodShare Now <ArrowRight className="h-5 w-5" />
         </Link>
-        
       </Button>
-        </>
-      )}
-      {isLoaded && !isSignedIn &&(
-        <>
-        <SignInButton mode='modal'>
-        <Button>
-        Join Jotion free
-        <ArrowRight className='h-4 w-4  ml-2' />
-      </Button>
-        </SignInButton>
-
-       
-        </>
-      )}
-    
     </div>
-  )
+  );
 }
 
-export default header
+export default Header;
