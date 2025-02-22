@@ -3,10 +3,12 @@
 import {
   BellPlus,
   Calendar,
+  DollarSign,
   EarthLock,
   Group,
   Home,
   Laptop,
+  Map,
   Settings,
 } from "lucide-react";
 import {
@@ -25,9 +27,9 @@ import { useState, useEffect } from "react";
 
 const defaultItems = [
   { title: "Home", url: "#", icon: Home },
-  { title: "Join Hackathon", url: "#", icon: Laptop },
-  { title: "Find RoomMate", url: "#", icon: Group },
-  { title: "Collage Event Update", url: "#", icon: Calendar },
+  { title: "Donate Food", url: "#", icon: Home },
+  { title: "NGO Near Me", url: "#", icon: Map },
+  { title: "Donations", url: "#", icon: DollarSign },
 ];
 
 export function AppSidebar({
@@ -39,19 +41,19 @@ export function AppSidebar({
   const [items, setItems] = useState(defaultItems);
 
   useEffect(() => {
-    if (user?.publicMetadata?.role === "Admin") {
+    if (user?.publicMetadata?.role === "NGO") {
       setItems((prevItems) => {
-        if (!prevItems.some((item) => item.title === "Admin-Event")) {
-          console.log("User is an admin, adding Admin menu");
+        if (!prevItems.find((item) => item.title === "NGO-Event")) {
+          console.log("User is an NGO, adding Admin menu");
           return [
             ...prevItems,
-            { title: "Admin-Event", url: "#", icon: EarthLock },
+            { title: "NGO-Event", url: "#", icon: EarthLock },
           ];
         }
         return prevItems;
       });
     }
-  }, [user]);
+  }, [user?.publicMetadata?.role]);
 
   return (
     <Sidebar className="flex flex-col h-full">
